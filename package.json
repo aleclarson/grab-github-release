@@ -41,7 +41,6 @@
     "src"
   ],
   "scripts": {
-    "build": "rollup -c && cp-j src/index.d.ts dist/",
     "lint": "biome lint *.js bin src test && tsc --noEmit test/types.test.ts",
     "check": "node test/cjs.cjs && node test/mocked && node test/real",
     "cover": "c8 node test/mocked",
@@ -66,7 +65,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@unixcompat/cp.js": "^3.0.0",
     "c8": "^10.1.2",
     "grab-github-release": "link:",
     "typescript": "^5.5.4"
