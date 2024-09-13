@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { grab, clearCache as clear } from '../dist/index.mjs'
+import { grab, clearCache as clear } from '../src/index.js'
 
 function help() {
   console.log(`Generates a unique build number with a human-readable build time.
