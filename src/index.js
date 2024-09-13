@@ -315,7 +315,7 @@ async function useCacheOrDownload(repo, version, url, archive, targetDirectory, 
   return { archivePath: cachePath, fromCache: true }
 }
 
-function unpack(archive, targetDirectory) {
+function unpack(archive, name, targetDirectory) {
   log('unpack "%s"', archive)
   return new Promise((resolve, reject) =>
     openArchive(archive, { lazyEntries: true }, (err, zip) => {
@@ -324,8 +324,13 @@ function unpack(archive, targetDirectory) {
       zip
         .on('entry', entry => {
           const { fileName } = entry
-          /* c8 ignore next */
-          if (fileName.endsWith('/')) return new Error('directory in archive')
+          if (!fileName.startsWith(name)) {
+            zip.readEntry();
+            return;
+          }
+          if (fileName.endsWith('/')) {
+            return reject(new Error('directory in archive'));
+          }
           const filePath = targetDirectory ? join(targetDirectory, fileName) : fileName
           log('write "%s"', filePath)
           zip.openReadStream(entry, (err, stream) => {
@@ -366,7 +371,7 @@ export async function grab({ name, repository, version, platformSuffixes, archSu
   }
   const { archivePath, fromCache } = await useCacheOrDownload(repository, version, url, archive, targetDirectory, unpackExecutable, cache, token)
   if (unpackExecutable) {
-    const executable = await unpack(archivePath, targetDirectory)
+    const executable = await unpack(archivePath, name, targetDirectory)
     await makeExecutable(executable)
     if (!fromCache) {
       log('remove "%s"', archivePath)
