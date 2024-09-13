@@ -26,21 +26,17 @@
     "node": ">=18"
   },
   "type": "module",
-  "module": "dist/index.mjs",
-  "main": "dist/index.cjs",
-  "types": "dist/index.d.ts",
+  "module": "src/index.js",
+  "types": "src/index.d.ts",
   "exports": {
-    "require": "./dist/index.cjs",
-    "import": "./dist/index.mjs"
+    "types": "./src/index.d.ts",
+    "import": "./src/index.js"
   },
   "bin": {
     "grab-github-release": "bin/grab-github-release.js",
     "ggr": "bin/grab-github-release.js"
   },
-  "files": [
-    "bin",
-    "dist"
-  ],
+  "files": ["bin", "src"],
   "scripts": {
     "build": "rollup -c && cp-j src/index.d.ts dist/",
     "lint": "biome lint *.js bin src test && tsc --noEmit test/types.test.ts",
@@ -51,10 +47,7 @@
   },
   "c8": {
     "check-coverage": "true",
-    "reporter": [
-      "lcov",
-      "text"
-    ],
+    "reporter": ["lcov", "text"],
     "branches": 100,
     "functions": 100,
     "lines": 100,
@@ -70,15 +63,7 @@
     "@unixcompat/cp.js": "^3.0.0",
     "c8": "^10.1.2",
     "grab-github-release": "link:",
-    "rollup": "^4.20.0",
-    "rollup-plugin-cleanup": "^3.2.1",
     "typescript": "^5.5.4"
   },
-  "keywords": [
-    "github",
-    "github-release",
-    "download",
-    "release",
-    "assets"
-  ]
+  "keywords": ["github", "github-release", "download", "release", "assets"]
 }
