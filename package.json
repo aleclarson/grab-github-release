@@ -1,6 +1,6 @@
 {
   "name": "@aleclarson/grab-github-release",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Downloads and optionally unpacks an archive from GitHub release assets for the current platform.",
   "author": {
     "name": "Ferdinand Prantl",
@@ -36,7 +36,10 @@
     "grab-github-release": "bin/grab-github-release.js",
     "ggr": "bin/grab-github-release.js"
   },
-  "files": ["bin", "src"],
+  "files": [
+    "bin",
+    "src"
+  ],
   "scripts": {
     "build": "rollup -c && cp-j src/index.d.ts dist/",
     "lint": "biome lint *.js bin src test && tsc --noEmit test/types.test.ts",
@@ -47,7 +50,10 @@
   },
   "c8": {
     "check-coverage": "true",
-    "reporter": ["lcov", "text"],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
     "branches": 100,
     "functions": 100,
     "lines": 100,
@@ -65,5 +71,11 @@
     "grab-github-release": "link:",
     "typescript": "^5.5.4"
   },
-  "keywords": ["github", "github-release", "download", "release", "assets"]
+  "keywords": [
+    "github",
+    "github-release",
+    "download",
+    "release",
+    "assets"
+  ]
 }
