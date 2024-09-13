@@ -1,6 +1,6 @@
 {
   "name": "@aleclarson/grab-github-release",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Downloads and optionally unpacks an archive from GitHub release assets for the current platform.",
   "author": {
     "name": "Ferdinand Prantl",
